@@ -1,0 +1,22 @@
+service : {
+  getDidForPrincipal: ("principal": principal) -> (text);
+  getMyDid: () -> (text);
+  getMyIssuedVCs: () -> (vec text);
+  getVC: (vcId: text) -> (opt text);
+  getVCsForDid: (did: text) -> (vec text);
+  issueVC: (recipientDid: text, claims: vec record {
+                                              text;
+                                              text;
+                                            }, expiresInHours: opt nat) ->
+   (text);
+  resolveDid: (did: text) -> (text);
+  revokeVC: (vcId: text) -> (bool);
+  verifyVC: (vcId: text) ->
+   (record {
+      errors: vec text;
+      isExpired: bool;
+      isValid: bool;
+      issuerValid: bool;
+      signatureValid: bool;
+    });
+}
